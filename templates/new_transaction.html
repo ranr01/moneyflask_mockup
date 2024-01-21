@@ -1,0 +1,13 @@
+{% include 'account_panel.html' %}
+
+<div id="form_div" class="w-full p-4">
+    <div class="w-full my-auto text-lg">New Transaction:</div>
+    <form hx-post="{{ account['id'] }}/new-transaction" hx-target="#account-{{ account['id'] }}-panel"
+        hx-select="#account-{{ account['id'] }}-panel" hx-swap="outerHTML">
+        <div class="flex items-center justify-between py-2">
+            <input type="text" name="description" placeholder="Description" class="w-2/3 px-2 py-1 border-2">
+            <input type="number" name="amount" placeholder="Amount" class="w-1/3 px-2 py-1 ml-2 border-2">
+            <button class="bg-[#72af7d] text-white  px-2 py-1 rounded ml-2">Submit</button>
+        </div>
+    </form>
+</div>

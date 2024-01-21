@@ -1,0 +1,32 @@
+<div class="flex items-center justify-between w-full p-4">
+
+    {% if state.name_is_active %}
+    <div class="text-lg font-semibold cursor-pointer" hx-get="/" hx-target="#account-{{ account['id'] }}-section"
+        hx-select="#account-{{ account['id'] }}-section">
+
+        {{ account['name'] }}
+
+    </div>
+    {% else %}
+    <div class="text-lg font-semibold">
+
+        {{ account['name'] }}
+
+    </div>
+    {% endif %}
+
+    <div class="font-bold {{ 'text-[#35914c]' if account['balance'] > 0 else 'text-red-500' }}">
+        ${{ '%.2f' | format(account['balance']) }}
+    </div>
+
+    <div class="flex space-x-4">
+        <svg hx-get="/" hx-target="#account-{{ account['id'] }}-section"
+            hx-select="#account-{{ account['id'] }}-section" hx-swap="innerHTML" xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-[#696767] cursor-pointer transform rotate-45" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
+            </path>
+        </svg>
+    </div>
+
+</div>
