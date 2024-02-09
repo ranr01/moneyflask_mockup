@@ -3,8 +3,9 @@
     class="container mx-auto border-4 border-[#72af7d] bg-white rounded-xl items-center">
     {% include 'account_panel.html' %}
 </div>
+
 <!-- transcations table -->
-<div class="container">
+<div class="container transaction-table">
     <table class="mx-auto text-left w-[90%]">
         <thead class="flex w-full text-[#72af7d] bg-[#c9d1c9]">
             <tr class="flex w-full mb-2 rounded-xl">
@@ -13,9 +14,7 @@
                 <th class="w-1/4 p-2">Amount</th>
             </tr>
         </thead>
-        <!-- Remove the nasty inline CSS fixed height on production and replace it with a CSS class — this is just for demonstration purposes! -->
-        <tbody class="flex flex-col items-center justify-between w-full overflow-y-scroll bg-grey-light"
-            style="max-height: 33vh;">
+        <tbody class="flex flex-col items-center justify-between w-full overflow-y-scroll bg-grey-light">
             {% for t in transactions %}
             <tr class="flex w-full">
                 <td class="w-1/4 p-4">{{ t['date'] }}</td>
