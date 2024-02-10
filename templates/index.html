@@ -12,7 +12,22 @@
 </head>
 
 <body class="bg-[#aac7af] font-helvetica">
-    <header class="text-3xl font-bold text-[#255c50] text-center my-8">
+    <nav class="font-bold text-[#255c50] flex items-center justify-between w-full mx-auto px-4 my-2">
+        <p>{{g.user['username']}}</p>
+        <svg hx-get="{{ url_for('auth.logout') }}" hx-replace-url="true" hx-target="body"
+            class="w-6 h-6 text-[#35914c] cursor-pointer" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+            fill="none" stroke="#255c50" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <rect x="2" y="2" width="12" height="20" rx="0" fill="#8ff0a4" opacity="0.1" stroke-width="0"></rect>
+                <polyline points="14 7 14 2 2 2 2 22 14 22 14 17"></polyline>
+                <line x1="10" y1="12" x2="22" y2="12"></line>
+                <polyline points="18 8 22 12 18 16"></polyline>
+            </g>
+        </svg>
+    </nav>
+    <header class="text-3xl font-bold text-[#255c50] text-center mt-4 mb-8">
         Incrementum Profectus
     </header>
 
