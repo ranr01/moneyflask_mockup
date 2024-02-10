@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 
 from werkzeug.security import generate_password_hash
 
-from auth_bp import auth_bp_factory, login_required
+from auth_bp import auth_bp_factory, login_required, role_required
 
 
 transactions = [
@@ -33,7 +33,18 @@ accounts = [
 ]
 
 users = [
-    {"id": 0, "username": "ranr", "password": generate_password_hash("250402")},
+    {
+        "id": 0,
+        "username": "ranr",
+        "password": generate_password_hash("250402"),
+        "role": "admin",
+    },
+    {
+        "id": 1,
+        "username": "ofer",
+        "password": generate_password_hash("2504"),
+        "role": "user",
+    },
 ]
 
 
@@ -73,6 +84,7 @@ def index():
 
 @app.route("/<int:account_id>/new-transaction", methods=["GET"])
 @login_required
+@role_required('admin')
 def new_transaction(account_id):
     state = State()
     state.name_is_active = False
@@ -86,6 +98,7 @@ def new_transaction(account_id):
 
 @app.route("/<int:account_id>/new-transaction", methods=["POST"])
 @login_required
+@role_required('admin')
 def post_new_transaction(account_id):
     transactions.append(
         {
@@ -115,6 +128,7 @@ def get_transactions(account_id):
 
 @app.route("/<int:account_id>/settings", methods=["GET"])
 @login_required
+@role_required('admin')
 def settings(account_id):
     state = State()
     state.name_is_active = False
@@ -128,5 +142,6 @@ def settings(account_id):
 
 @app.route("/<int:account_id>/settings", methods=["POST"])
 @login_required
+@role_required('admin')
 def post_settings(account_id):
     return redirect(url_for("index"))

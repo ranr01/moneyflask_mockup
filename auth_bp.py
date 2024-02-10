@@ -1,7 +1,7 @@
 import functools
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, Flask, flash, g, redirect, render_template, request, session, url_for, abort,
 )
 from werkzeug.security import check_password_hash
 
@@ -64,6 +64,18 @@ def login_required(view):
 
     return wrapped_view
 
+def role_required(role):
+    def wrapper(view):
+        @functools.wraps(view)
+        def wrapped_view(**kwargs):
+            if g.user['role'] != role:
+                abort(403)
+
+            return view(**kwargs)
+
+        return wrapped_view
+    
+    return wrapper
 
 
 
