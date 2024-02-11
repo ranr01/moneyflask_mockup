@@ -14,7 +14,7 @@
                 <th class="w-1/4 p-2">Amount</th>
             </tr>
         </thead>
-        <tbody class="flex flex-col items-center justify-between w-full overflow-y-scroll bg-grey-light">
+        <tbody class="flex flex-col items-center justify-between w-full overflow-y-scroll bg-grey-light max-h-[25vh]">
             {% for t in transactions %}
             <tr class="flex w-full">
                 <td class="w-1/4 p-4">{{ t['date'] }}</td>
