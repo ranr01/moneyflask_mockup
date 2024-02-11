@@ -26,10 +26,10 @@ transactions = [
     },
 ]
 accounts = [
-    {"id": 1, "name": "Ofer", "balance": 1115.55},
-    {"id": 2, "name": "Maya", "balance": -456.00},
-    {"id": 3, "name": "Ofer (Savings)", "balance": 18000.0},
-    {"id": 4, "name": "Maya (Savings)", "balance": 10000.0},
+    {"id": 1, "name": "Ofer", "owner": 1, "balance": 1115.55},
+    {"id": 2, "name": "Maya", "owner": 2, "balance": -456.00},
+    {"id": 3, "name": "Ofer (Savings)", "owner": 1, "balance": 18000.0},
+    {"id": 4, "name": "Maya (Savings)", "owner": 2, "balance": 10000.0},
 ]
 
 users = [
@@ -42,6 +42,12 @@ users = [
     {
         "id": 1,
         "username": "ofer",
+        "password": generate_password_hash("2504"),
+        "role": "user",
+    },
+    {
+        "id": 2,
+        "username": "maya",
         "password": generate_password_hash("2504"),
         "role": "user",
     },
@@ -84,7 +90,7 @@ def index():
 
 @app.route("/<int:account_id>/new-transaction", methods=["GET"])
 @login_required
-@role_required('admin')
+@role_required("admin")
 def new_transaction(account_id):
     state = State()
     state.name_is_active = False
@@ -98,7 +104,7 @@ def new_transaction(account_id):
 
 @app.route("/<int:account_id>/new-transaction", methods=["POST"])
 @login_required
-@role_required('admin')
+@role_required("admin")
 def post_new_transaction(account_id):
     transactions.append(
         {
@@ -128,7 +134,7 @@ def get_transactions(account_id):
 
 @app.route("/<int:account_id>/settings", methods=["GET"])
 @login_required
-@role_required('admin')
+@role_required("admin")
 def settings(account_id):
     state = State()
     state.name_is_active = False
@@ -142,6 +148,6 @@ def settings(account_id):
 
 @app.route("/<int:account_id>/settings", methods=["POST"])
 @login_required
-@role_required('admin')
+@role_required("admin")
 def post_settings(account_id):
     return redirect(url_for("index"))

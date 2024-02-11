@@ -33,7 +33,7 @@
 
     <!-- Account Panels -->
     <div class="container mx-auto space-y-4">
-        {% for account in accounts %}
+        {% for account in accounts if g.user['role']=='admin' or g.user['id']==account['owner'] %}
         <!-- Account section -->
         <div id="account-{{ account['id'] }}-section" class="space-y-2">
             <!-- Account panel -->
@@ -47,6 +47,8 @@
                     <div class="font-bold {{ 'text-[#35914c]' if account['balance'] > 0 else 'text-red-500' }}">
                         ${{ '%.2f' | format(account['balance']) }}
                     </div>
+
+                    {% if g.user['role'] == 'admin' %}
                     <div class="flex space-x-4">
                         <svg hx-get="{{ account['id'] }}/new-transaction" hx-target="#account-{{ account['id'] }}-panel"
                             xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-[#35914c] cursor-pointer" fill="none"
@@ -67,6 +69,7 @@
                             </g>
                         </svg>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
