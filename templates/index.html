@@ -33,7 +33,7 @@
 
     <!-- Account Panels -->
     <div class="container mx-auto space-y-4">
-        {% for account in accounts if g.user['role']=='admin' or g.user['id']==account['owner'] %}
+        {% for account in accounts if g.user['role']=='admin' or g.user['id']== account['owner'] %}
         <!-- Account section -->
         <div id="account-{{ account['id'] }}-section" class="space-y-2">
             <!-- Account panel -->

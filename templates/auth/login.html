@@ -12,12 +12,6 @@
 </head>
 
 <body class="bg-[#aac7af] font-helvetica">
-  <style>
-    input:focus {
-      outline: none !important;
-    }
-  </style>
-
   <header class="text-3xl font-bold text-[#255c50] text-center my-8">
     Incrementum Profectus
   </header>
@@ -26,42 +20,31 @@
     Allowance Evolved
   </p>
 
-  <!-- <div class="container mx-auto border-4 border-[#72af7d] bg-white rounded-xl items-center space-y-10"> -->
   <div class="border-4 border-[#72af7d] bg-white rounded-xl flex items-center justify-center m-5 py-5">
     <form method="post" class="space-y-4">
       {% for message in get_flashed_messages() %}
       <div class="font-medium text-[#dd4e44]">{{ message }}</div>
       {% endfor %}
       <div>
-        <label for="Username" class="block font-medium text-[#255c50]">User Name</label>
+        <label for="Username" class="block font-medium text-[#255c50]">
+          User Name
+        </label>
         <input id="username" name="username" required
-          class="block w-full p-2 mt-1 border-2 border-[#72af7d] rounded-xl focus:ring-[#255c50] focus:border-[#255c50] ">
+          class="block w-full p-2 mt-1 border-2 border-[#72af7d] rounded-xl focus:border-[#255c50] focus:outline-none">
       </div>
       <div>
-        <label for="password" class="block font-medium text-[#255c50]">Password</label>
+        <label for="password" class="block font-medium text-[#255c50]">
+          Password
+        </label>
         <input type="password" id="password" name="password" required
-          class="block w-full p-2 mt-1 border-2 border-[#72af7d] rounded-xl focus:ring-[#255c50] focus:border-[#255c50]">
+          class="block w-full p-2 mt-1 border-2 border-[#72af7d] rounded-xl focus:border-[#255c50] focus:outline-none">
       </div>
       <div>
         <button type="submit"
-          class="flex justify-center w-full px-4 py-2 font-medium text-white bg-[#255c50] border border-transparent rounded-xl hover:bg-[#255c50] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#255c50]">
+          class="flex justify-center w-full px-4 py-2 font-medium text-white bg-[#255c50] rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#255c50]">
           Log in
         </button>
       </div>
     </form>
   </div>
-
-  <!-- {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-    {% endfor %}
-    <form method="post">
-      <label for="username">Username</label>
-      <input name="username" id="username" required>
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" required>
-      <input type="submit" value="Log In">
-    </form> -->
-  <!-- </div> -->
-
-
 </body>
